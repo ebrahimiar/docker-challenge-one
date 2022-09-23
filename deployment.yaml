@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dockchaldeploy
+  namespace: dockchalns
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: dockerchallenge
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: dockerchallenge
+    spec:
+      containers:
+      - name: dockerchallenge
+        image: chal:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+          protocol: TCP

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dockchalsrv
+  namespace: dockchalns
+spec:
+  selector:
+    app: dockerchallenge
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8083
+      name: non-secure
+      targetPort: 8080
+      nodePort: 30001
